@@ -2,6 +2,7 @@ package com.gmc.net;
 
 import com.gmc.core.LogUtils;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,15 +18,15 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 public class EpochListenersMapTest {
     static ExecutorService executorService;
 
     @BeforeAll
     static void init() {
-        executorService = Executors.newFixedThreadPool(10);
+        executorService = Executors.newFixedThreadPool(4);
     }
-
-    @RepeatedTest(1000)
+    @RepeatedTest(2)
     @Timeout(10)
     @Test
     void test() throws ExecutionException, InterruptedException {
@@ -33,7 +34,7 @@ public class EpochListenersMapTest {
         NettyClientChannel.EpochListenersMap epochListeners = nettyClientChannel.new EpochListenersMap();
         int listenerSize = 20;
         int loopSize = 2;
-        int maxEpoch = 100;
+        int maxEpoch = 0;
         List<CompletableFuture> list = new ArrayList<>();
         while (loopSize-- > 0) {
             for (int i = 0; i < listenerSize; i++) {

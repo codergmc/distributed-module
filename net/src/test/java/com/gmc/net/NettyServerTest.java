@@ -5,6 +5,7 @@ import com.gmc.config.ConfigProperty;
 import com.gmc.config.process.DefaultValueProcessor;
 import io.netty.util.ResourceLeakDetector;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,11 +19,9 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NettyServerTest {
-    @BeforeAll
-    static void beforeAll(){
-        System.setProperty("io.netty.leakDetectionLevel", ResourceLeakDetector.Level.PARANOID.name());
-    }
+
     @Test
+    @RepeatedTest(10)
     void test() throws Exception {
         ConfigProperty configProperty = Config.builder().paths("classpath://com/gmc/net/serverConfig.properties").configClass(ServerConfig.class).processor(new DefaultValueProcessor()).build().getConfig();
 
@@ -95,6 +94,9 @@ class NettyServerTest {
                 socketChannel.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }finally {
+                buffer.clear();
+                bytesBuffer.release();
             }
         }
 
@@ -125,7 +127,7 @@ class NettyServerTest {
                     Message decode = messageCodeManager.decode(bytesBuffer);
                     bytesBuffer.discardReadBytes();
                     return decode;
-                } catch (IndexOutOfBoundsException exception) {
+                } catch (Exception exception) {
                     bytesBuffer.resetReadIndex();
                     continue;
                 }
