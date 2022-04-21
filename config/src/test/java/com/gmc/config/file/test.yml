@@ -1,0 +1,10 @@
+a:
+  string: string
+  integer: 4
+  double: 4.4
+  list:
+    integer:
+      - 1
+      - 2
+      - 3
+string: string

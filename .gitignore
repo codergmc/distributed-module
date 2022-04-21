@@ -1,0 +1,4 @@
+# Project exclude paths
+/config/target/
+/core/target/
+/net/target/
