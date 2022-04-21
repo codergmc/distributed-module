@@ -80,9 +80,9 @@
 
     </dependencies>
     <scm>
-        <connection>scm:git:ssh://git@github.com:codergmc/distributed-module.git</connection>
+        <connection>scm:git:https://github.com/codergmc/distributed-module.git</connection>
         <url>https://github.com/codergmc/distributed-module</url>
-        <developerConnection>scm:git:ssh://git@github.com:codergmc/distributed-module.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/codergmc/distributed-module.git</developerConnection>
     </scm>
 
     <build>
