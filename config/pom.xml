@@ -11,7 +11,12 @@
 
     <artifactId>config</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.gmc</groupId>
